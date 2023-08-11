@@ -94,4 +94,35 @@ let test;  // any
 // 通过类型断言这种方式可以告诉编译器，“相信我，我知道自己在干什么”
 const arrayNumber: number[] = [1, 2, 3, 4];
 const newArr = arrayNumber.filter(item => item > 2) as number[];
-console.log(newArr);
+
+// 非空断言
+// 后缀表达式操作符 ! 用于断言操作对象是 非null和非undefined类型
+// 也就是说，x！将从x值域中排除null和undefined
+let myNullOrUndefinedOrString: null | undefined | string = 'str';
+myNullOrUndefinedOrString!.toString()  // ok
+
+// 确定赋值断言
+// 允许在实例属性和变量声明后面放置一个!,从而告诉ts 该属性会被明确地赋值
+let x1 !: number;   // 通过确定赋值断言，ts就知道该属性会被明确地赋值
+initialize();
+console.log(2 * x1);
+function initialize() {
+    x1 = 10;
+}
+
+
+
+// 字面量类型
+// 字符串字面量
+type Direction = 'up' | 'down';
+function move(dir: Direction) {   // 通过字面量类型组合的联合类型，可以限制函数参数为指定的字面量类型集合，然后编译器会检查参数是否是指定的字面量类型集合里的成员
+    // 相较于使用string类型，使用字面量类型(组合的联合类型)可以将函数参数限定为更具体的类型
+}
+move('up');  // ok
+
+// 数字字面量类型和布尔字面量类型的使用 和字符串字面量类型类似
+interface Config {
+    size: 'small' | 'big';
+    isEnable: boolean;
+    margin: 0 | 2 | 4;
+}
