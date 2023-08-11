@@ -126,3 +126,14 @@ interface Config {
     isEnable: boolean;
     margin: 0 | 2 | 4;
 }
+
+
+// 类型拓宽 Type Widening
+// 通过Let或var定义 且 未显式添加类型注解 的 变量、形参、对象的非只读属性，它们的类型会被字面量类型拓宽
+let strTW = 'this is string';   // type: string  类型拓宽为string
+let strFun = (str = 'this is string') => strTW;    // type: (str?: string)=>string  形参类型拓宽为string|undefined
+const strTW1 = 'this is string';  // type: 'this is string'  常量不可更改，类型没有拓宽，类型是字面量类型
+let strTW2 = strTW1;    // type: string
+let strFun2 = (str = strTW2) => strTW;   // type: (str?:string)=>string
+
+// 通过添加显式类型注解控制类型拓宽行为
