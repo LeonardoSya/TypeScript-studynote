@@ -137,3 +137,6 @@ let strTW2 = strTW1;    // type: string
 let strFun2 = (str = strTW2) => strTW;   // type: (str?:string)=>string
 
 // 通过添加显式类型注解控制类型拓宽行为
+const specifiedStr: 'this is string' = 'this is string';
+let strr = specifiedStr;   // 即便使用let定义，类型仍是'this is string'
+
