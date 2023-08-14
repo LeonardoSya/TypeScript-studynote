@@ -140,3 +140,62 @@ let strFun2 = (str = strTW2) => strTW;   // type: (str?:string)=>string
 const specifiedStr: 'this is string' = 'this is string';
 let strr = specifiedStr;   // 即便使用let定义，类型仍是'this is string'
 
+// 类型缩小
+// 帮助类型检查器缩小类型的一种常见方法是在它们上放置一个明确的“标签” ———— 标签联合 / 可辨识联合
+interface UploadEvent {
+    type: 'upload';
+    filename: string;
+    contents: string;
+}
+interface DownloadEvent {
+    type: 'download';
+    filename: string;
+}
+type AddEvent = UploadEvent | DownloadEvent;
+
+function handleEvent(e: AddEvent) {
+    switch (e.type) {
+        case 'download':
+            e;   // type is DownloadEvent   
+            break;
+        case 'upload':
+            e;  // type is UploadEvent
+            break;
+    }
+}
+
+
+
+//  联合类型 通常与null/undefined一起使用
+const sayHello = (name: string | undefined) => { };  // 这里意味着可以可以把str或undefined的值传给say函数
+
+let numTest: 1 | 2 = 1;
+type EventTest = 'click' | 'scroll' | 'mousemove';
+// 这两个是字面量类型
+
+
+// 交叉类型
+// 交叉类型包含所需的所有类型的特性
+// 实际用于将多个接口类型合并成一个类型，从而实现等同接口继承的效果
+type IntersectionType = { id: number; name: string } & { age: number };
+const mixed: IntersectionType = {
+    id: 1,
+    name: 'zyy',
+    age: 18,
+}
+
+// 当同名属性是非基本数据类型
+interface A { x: { d: true } };
+interface B { x: { e: string } };
+interface C { x: { f: number } };
+type ABC = A & B & C;
+const abc: ABC = {
+    x: {
+        d: true,
+        e: 'zyy',
+        f: 666,
+    }
+}
+console.log(abc);
+//  当混入多个类型时，若存在相同的成员，且成员类型为非基本数据类型，那么可以成功合并
+
