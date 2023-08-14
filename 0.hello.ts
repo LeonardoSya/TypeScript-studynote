@@ -4,3 +4,10 @@ function greeter(person: string) {   // 类型注解   类型注解是一种轻�
 let user = "Jane";
 document.body.innerHTML = greeter(user);
 // $ tsc index.ts 可以输出一个编译成js的js文件
+
+
+function sumIt(n: number): number {
+    return n;
+}
+
+console.log(sumIt(1));
