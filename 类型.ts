@@ -11,7 +11,7 @@ const obj: object = {
 //  BigInt 是一种内置对象，它提供了一种方法来表示大于 2^53 - 1 的整数。这原本是 Javascript 中可以用 Number 表示的最大数字。BigInt 可以表示任意大的整数。
 //  可以用在一个整数字面量后面加 n 的方式定义一个 BigInt ，如：10n，或者调用函数 BigInt()（但不包含 new 运算符）并传递一个整数值或字符串值。
 //  它在某些方面类似于 Number ，但是也有几个关键的不同点：不能用于 Math 对象中的方法；不能和任何 Number 实例混合运算，两者必须转换成同一种类型。在两种类型来回转换时要小心，因为 BigInt 变量在转换成 Number 变量时可能会丢失精度。
-const big: bigint = 100n;
+// const big: bigint = 100n;
 const sym: symbol = Symbol("me");
 
 //  类型注解是一种轻量级的为函数或变量添加约束的方式  TS提供静态的代码分析
