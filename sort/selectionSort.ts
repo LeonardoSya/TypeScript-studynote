@@ -11,5 +11,6 @@ function selectionSort(arr: number[]): number[] {
     return arr;
 }
 
+
 const arrSelectionSort = [2, 3, 665, 23, 97, 24, 6, 2];
 console.log(selectionSort(arrSelectionSort));
